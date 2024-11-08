@@ -54,7 +54,6 @@ jobs:
       env:
           HOST: ${{ secrets.EC2_HOST }}
           USER: ${{ secrets.EC2_USER }}
-          DOCKER_COMPOSE_FILE: ${{ secrets.DOCKER_COMPOSE_FILE }}
       run: |
           ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
             # Set the application directory
