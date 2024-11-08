@@ -70,7 +70,7 @@ jobs:
               git clone https://github.com/obijzbo/django-react-postgres.git $APP_DIR
               cd $APP_DIR
             fi
-
+            cp sample.env .env
             # Run Docker Compose with the specified file, if provided
             docker compose up -d --build
           EOF
