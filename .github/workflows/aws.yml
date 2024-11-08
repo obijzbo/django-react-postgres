@@ -57,12 +57,20 @@ jobs:
           DOCKER_COMPOSE_FILE: ${{ secrets.DOCKER_COMPOSE_FILE }}
       run: |
           ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
-            # Navigate to your application directory
+            # Set the application directory
             cd ~
+            APP_DIR="django-react-postgres"
 
-            # Pull the latest changes
-            git pull origin main
+            if [ -d "$APP_DIR/.git" ]; then
+              echo "Repository exists. Pulling latest changes..."
+              cd $APP_DIR
+              git pull origin main
+            else
+              echo "Repository does not exist. Cloning repository..."
+              git clone https://github.com/obijzbo/django-react-postgres.git $APP_DIR
+              cd $APP_DIR
+            fi
 
-            # Run Docker Compose
+            # Run Docker Compose with the specified file, if provided
             docker compose up -d --build
           EOF
