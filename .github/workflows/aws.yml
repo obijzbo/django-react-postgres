@@ -64,5 +64,5 @@ jobs:
             git pull origin main
 
             # Run Docker Compose
-            docker-compose -f "${DOCKER_COMPOSE_FILE:-docker-compose.yml}" up -d --build
+            docker compose up -d --build
           EOF
